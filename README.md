@@ -4,6 +4,13 @@ Vite + React quiz app for adaptive daily business math (Philippine peso contexts
 
 **Live app:** [https://medinaneg.github.io/medinaneg-business-math-practice/](https://medinaneg.github.io/medinaneg-business-math-practice/)
 
+### Enable GitHub Pages (one-time)
+
+1. GitHub repo → **Settings** → **Pages**
+2. **Build and deployment** → Source: **GitHub Actions** (not “Deploy from branch” only)
+3. Push to `main` or run workflow **Deploy GitHub Pages** manually under **Actions**
+4. Open the Pages URL above; you should see the quiz (not “There isn't a GitHub Pages site here”)
+
 Students open a personal link from Slack with `student_id` and `date` query parameters.
 
 ## Class roster

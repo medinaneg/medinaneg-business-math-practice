@@ -2,6 +2,9 @@
 
 **Repo:** `medinaneg/medinaneg-business-math-practice` on branch `main`  
 **Quiz app:** `https://medinaneg.github.io/medinaneg-business-math-practice/?student_id={id}&date={YYYY-MM-DD}`  
+
+**GitHub Pages (required once):** Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**. Workflow `.github/workflows/deploy-pages.yml` deploys on every push to `main`. If students see **404 There isn't a GitHub Pages site here**, Pages is not enabled or the workflow has not finished — do not post Slack quiz links until the home URL loads.
+
 **Timezone:** Asia/Taipei (UTC+8)  
 **Slack channel (your class):** `#business-math-practice` — set this channel in the automation’s **Send to Slack** tool settings.
 
@@ -66,9 +69,12 @@ WORKFLOW (execute in order)
 3. Copy that file to public/automation/daily/{date}.json.
 4. Update automation/data/daily-assignments.json.
 5. Write Sheet tab DailyAssignments: one row per student with columns date, student_id, quiz_url, item_ids, published_at.
-6. git commit and push to main (so GitHub Pages serves the new day).
-7. In the repo run: npm run format-slack -- {YYYY-MM-DD}
-8. SLACK DELIVERY (required): Use Send to Slack to post the COMPLETE stdout from step 7 to #business-math-practice.
+6. git commit and push to main.
+7. Wait for GitHub Actions workflow "Deploy GitHub Pages" to succeed (check repo Actions tab). Verify QUIZ_BASE_URL returns HTTP 200 (not 404) before notifying students.
+8. In the repo run: npm run format-slack -- {YYYY-MM-DD}
+9. SLACK DELIVERY (required): Use Send to Slack to post the COMPLETE stdout from step 8 to #business-math-practice.
+
+If QUIZ_BASE_URL still returns 404: post to Slack that links are pending Pages setup (Settings → Pages → GitHub Actions), not broken quiz URLs.
 
 If step 7 fails, build the same message manually:
 - Line 1: 📘 Business Math Day {date} is live
