@@ -84,7 +84,7 @@ Today's quiz (open your own link):
 Level mix (sample): C&W L{n}, Best buy L{n}, Profit L{n}, Installment L{n}
 Bank: {n} items · Sheet: {connected|artifact in repo}
 
-This pilot roster has 5 students; post all five links in the main message (use a thread only if the message is trimmed by Slack limits).
+This pilot roster has 5 students; post all five links in the main message (use a thread only if Slack trims the message).
 
 5. Optionally run `node scripts/format-daily-slack.mjs {YYYY-MM-DD}` from repo to generate the Slack body before sending.
 
