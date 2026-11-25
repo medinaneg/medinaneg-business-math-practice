@@ -16,7 +16,7 @@
 | Automation | Tools |
 |------------|-------|
 | **A** Daily | **Send to Slack** (required), GitHub, Google Drive, Memory |
-| **B** Submit | **Send to Slack** (required), **Slack read** (`slack_read_channel`, `slack_read_thread`), Google Drive, GitHub, Memory |
+| **B** Submit | **Send to Slack** (required), **Read Public Slack Channels**, Google Drive, GitHub, Memory |
 | **C** Weekly | **Send to Slack** (required), Google Drive, GitHub, Memory |
 
 ---
@@ -132,14 +132,19 @@ DONE WHEN
 | Optional reminder cron | `0 21 * * *` Asia/Taipei — post “Paste any missing BUSINESS_MATH_SUBMIT lines from today’s quiz” only; if grading in that run, still execute **step 0** Slack read |
 | Repository | Same |
 | Slack tool (send) | `#business-math-practice` |
-| Slack tool (read) | **Required** — enable channel/thread read on the automation |
+| Slack tool (read) | **Required** — add **Read Public Slack Channels** (Cursor built-in; not a custom MCP) |
 
 ### Cursor automation setup (B)
 
-1. **Tools** on [cursor.com/automations](https://cursor.com/automations): enable **Send to Slack** *and* **Slack** read tools — at minimum `slack_read_channel` and `slack_read_thread` (not send-only).
-2. **Trigger:** Slack — new message in `#business-math-practice` (optional keyword filter `BUSINESS_MATH_SUBMIT`). Event/webhook triggers **do not** guarantee the message body is in the agent prompt; the prompt **always** fetches from Slack (step 0).
-3. After editing this repo file, **re-paste the full Automation B prompt** below into the automation and save.
-4. **Manual test run:** post a fresh `BUSINESS_MATH_SUBMIT {…}` line, wait for the automation, confirm the agent called `slack_read_channel` before grading.
+1. **Tools** on [cursor.com/automations](https://cursor.com/automations) — add these only:
+   - **Send to Slack** → channel `#business-math-practice`
+   - **Read Public Slack Channels**
+   - **Google Drive** (Sheet writes)
+   - **GitHub** + **Memories** (optional)
+2. **Do not add** generic **MCP Server** unless you fully configure it. If you see **“MCP Server tool is missing”**, remove MCP Server (X) — it is not required for grading.
+3. **Trigger:** Slack — new message in `#business-math-practice` (optional keyword `BUSINESS_MATH_SUBMIT`). The trigger does not pass message text into the agent; **step 0 always uses Read Public Slack Channels**.
+4. Re-paste the **Automation B prompt** below after edits and save.
+5. **Test:** post `BUSINESS_MATH_SUBMIT {…}`; the run log should show **Read Public Slack Channels** on `#business-math-practice` before grading.
 
 ### Prompt
 
@@ -155,12 +160,12 @@ CONSTANTS
 STEP 0 — FETCH SUBMIT FROM SLACK (mandatory first step; never skip)
 Cursor often does NOT put the triggering Slack message in your run context. You MUST load it yourself before grading or skipping.
 
-0a. If the run metadata includes a Slack channel thread (thread_ts / thread timestamp), call Slack MCP slack_read_thread on #business-math-practice for that thread.
-0b. Otherwise call Slack MCP slack_read_channel on #business-math-practice with limit ~20 recent messages (increase to ~50 only if needed).
-0c. Prefer the triggering message if automation metadata gives a message timestamp (ts) — match that message first.
-0d. Otherwise choose the newest message whose text, after trimming leading whitespace, starts with BUSINESS_MATH_SUBMIT (case-sensitive keyword).
-0e. Parse JSON: strip the keyword and whitespace; from the first "{" take balanced braces through the closing "}" for that object (entire quiz JSON is often one Slack message / one line). If parsing fails, reply with the parse error and stop.
-0f. Only if steps 0a–0e find zero matching messages after an active Slack read, post exactly once: "Grading skipped — no BUSINESS_MATH_SUBMIT message found in #business-math-practice (searched recent channel messages)." Never skip without calling slack_read_channel or slack_read_thread.
+0a. Use the automation tool **Read Public Slack Channels** to load recent messages from #business-math-practice (start with ~20 messages; widen only if needed).
+0b. If the run includes a thread id for the trigger, read that thread’s messages when the tool allows targeting a thread; otherwise use channel history.
+0c. Prefer the triggering message if run metadata includes a message timestamp — match that message first.
+0d. Otherwise pick the newest message whose text, after trimming leading whitespace, starts with BUSINESS_MATH_SUBMIT (case-sensitive).
+0e. Parse JSON: strip the keyword and whitespace; from the first "{" take balanced braces through the closing "}" (whole quiz is often one Slack message). On parse error, reply with the error and stop.
+0f. Only after 0a–0e and an actual **Read Public Slack Channels** call finds zero matches, post once: "Grading skipped — no BUSINESS_MATH_SUBMIT message found in #business-math-practice (searched recent channel messages)." Never skip without using Read Public Slack Channels.
 
 Do not rely on "run context", user paste in the automation chat, or memory for the payload — the Slack read is the source of truth.
 
