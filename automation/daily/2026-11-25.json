@@ -1,0 +1,507 @@
+{
+  "date": "2026-11-25",
+  "published_at": "2026-11-25T17:26:06.936Z",
+  "sheets_connected": false,
+  "students": [
+    {
+      "student_id": "S001",
+      "display_name": "Sofia",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S001",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L3-002",
+          "title": "[commission_wages|salary_plus_commission|L3] ₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 3,
+          "stem": "₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "choices": {
+            "A": "₱12,000",
+            "B": "₱20,000",
+            "C": "₱18,000",
+            "D": "₱30,000"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L4-001",
+          "title": "[commission_wages|tiered_commission|L4] Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "topic": "commission_wages",
+          "sub_skill": "tiered_commission",
+          "level": 4,
+          "stem": "Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "choices": {
+            "A": "₱3,640",
+            "B": "₱3,800",
+            "C": "₱3,400",
+            "D": "₱4,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-003",
+          "title": "[best_buy|discount_vs_bulk|L1] ₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 1,
+          "stem": "₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "choices": {
+            "A": "10% off ₱120",
+            "B": "₱108 flat",
+            "C": "Same",
+            "D": "₱120 full price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-001",
+          "title": "[best_buy|discount_vs_bulk|L2] One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 2,
+          "stem": "One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "choices": {
+            "A": "5 singles (₱225)",
+            "B": "One pack (₱200)",
+            "C": "Two packs (₱400)",
+            "D": "₱40 each in pack"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-002",
+          "title": "[best_buy|buy_x_get_y|L2] Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "topic": "best_buy",
+          "sub_skill": "buy_x_get_y",
+          "level": 2,
+          "stem": "Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "choices": {
+            "A": "₱350",
+            "B": "₱700",
+            "C": "₱1,050",
+            "D": "₱233"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L3-001",
+          "title": "[best_buy|unit_price|L3] 3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 3,
+          "stem": "3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "choices": {
+            "A": "A at ₱53/kg",
+            "B": "B at ₱56/kg",
+            "C": "A at ₱47/kg",
+            "D": "Same price"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-PS-L2-001",
+          "title": "[profit_sales|percent_discount|L2] Tagged ₱500, 10% off during a fair. Sale price?",
+          "topic": "profit_sales",
+          "sub_skill": "percent_discount",
+          "level": 2,
+          "stem": "Tagged ₱500, 10% off during a fair. Sale price?",
+          "choices": {
+            "A": "₱490",
+            "B": "₱450",
+            "C": "₱50",
+            "D": "₱550"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L2-002",
+          "title": "[profit_sales|profit_amount|L2] Buy at ₱240, sell at ₱300. Profit amount?",
+          "topic": "profit_sales",
+          "sub_skill": "profit_amount",
+          "level": 2,
+          "stem": "Buy at ₱240, sell at ₱300. Profit amount?",
+          "choices": {
+            "A": "₱40",
+            "B": "₱60",
+            "C": "₱540",
+            "D": "₱300"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-001",
+          "title": "[installment|down_payment|L1] Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "topic": "installment",
+          "sub_skill": "down_payment",
+          "level": 1,
+          "stem": "Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "choices": {
+            "A": "₱8,500",
+            "B": "₱1,500",
+            "C": "₱150",
+            "D": "₱10,150"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-002",
+          "title": "[installment|monthly_payment|L1] ₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "topic": "installment",
+          "sub_skill": "monthly_payment",
+          "level": 1,
+          "stem": "₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱720",
+            "C": "₱12,000",
+            "D": "₱840"
+          },
+          "correct": "A"
+        }
+      ]
+    },
+    {
+      "student_id": "S002",
+      "display_name": "Mateo",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S002",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L3-002",
+          "title": "[commission_wages|salary_plus_commission|L3] ₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 3,
+          "stem": "₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "choices": {
+            "A": "₱12,000",
+            "B": "₱20,000",
+            "C": "₱18,000",
+            "D": "₱30,000"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L4-001",
+          "title": "[commission_wages|tiered_commission|L4] Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "topic": "commission_wages",
+          "sub_skill": "tiered_commission",
+          "level": 4,
+          "stem": "Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "choices": {
+            "A": "₱3,640",
+            "B": "₱3,800",
+            "C": "₱3,400",
+            "D": "₱4,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-003",
+          "title": "[best_buy|discount_vs_bulk|L1] ₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 1,
+          "stem": "₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "choices": {
+            "A": "10% off ₱120",
+            "B": "₱108 flat",
+            "C": "Same",
+            "D": "₱120 full price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-001",
+          "title": "[best_buy|discount_vs_bulk|L2] One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 2,
+          "stem": "One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "choices": {
+            "A": "5 singles (₱225)",
+            "B": "One pack (₱200)",
+            "C": "Two packs (₱400)",
+            "D": "₱40 each in pack"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-002",
+          "title": "[best_buy|buy_x_get_y|L2] Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "topic": "best_buy",
+          "sub_skill": "buy_x_get_y",
+          "level": 2,
+          "stem": "Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "choices": {
+            "A": "₱350",
+            "B": "₱700",
+            "C": "₱1,050",
+            "D": "₱233"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L3-001",
+          "title": "[best_buy|unit_price|L3] 3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 3,
+          "stem": "3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "choices": {
+            "A": "A at ₱53/kg",
+            "B": "B at ₱56/kg",
+            "C": "A at ₱47/kg",
+            "D": "Same price"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-PS-L2-001",
+          "title": "[profit_sales|percent_discount|L2] Tagged ₱500, 10% off during a fair. Sale price?",
+          "topic": "profit_sales",
+          "sub_skill": "percent_discount",
+          "level": 2,
+          "stem": "Tagged ₱500, 10% off during a fair. Sale price?",
+          "choices": {
+            "A": "₱490",
+            "B": "₱450",
+            "C": "₱50",
+            "D": "₱550"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L2-002",
+          "title": "[profit_sales|profit_amount|L2] Buy at ₱240, sell at ₱300. Profit amount?",
+          "topic": "profit_sales",
+          "sub_skill": "profit_amount",
+          "level": 2,
+          "stem": "Buy at ₱240, sell at ₱300. Profit amount?",
+          "choices": {
+            "A": "₱40",
+            "B": "₱60",
+            "C": "₱540",
+            "D": "₱300"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-001",
+          "title": "[installment|down_payment|L1] Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "topic": "installment",
+          "sub_skill": "down_payment",
+          "level": 1,
+          "stem": "Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "choices": {
+            "A": "₱8,500",
+            "B": "₱1,500",
+            "C": "₱150",
+            "D": "₱10,150"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-002",
+          "title": "[installment|monthly_payment|L1] ₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "topic": "installment",
+          "sub_skill": "monthly_payment",
+          "level": 1,
+          "stem": "₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱720",
+            "C": "₱12,000",
+            "D": "₱840"
+          },
+          "correct": "A"
+        }
+      ]
+    },
+    {
+      "student_id": "S003",
+      "display_name": "Anya",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S003",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L3-002",
+          "title": "[commission_wages|salary_plus_commission|L3] ₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 3,
+          "stem": "₱1,800 weekly + 6% on sales. Find sales if gross was ₱3,000.",
+          "choices": {
+            "A": "₱12,000",
+            "B": "₱20,000",
+            "C": "₱18,000",
+            "D": "₱30,000"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L4-001",
+          "title": "[commission_wages|tiered_commission|L4] Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "topic": "commission_wages",
+          "sub_skill": "tiered_commission",
+          "level": 4,
+          "stem": "Base ₱3,000 + 2% on ₱8,000 sales + 4% on next ₱12,000. Gross if total sales ₱20,000?",
+          "choices": {
+            "A": "₱3,640",
+            "B": "₱3,800",
+            "C": "₱3,400",
+            "D": "₱4,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-003",
+          "title": "[best_buy|discount_vs_bulk|L1] ₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 1,
+          "stem": "₱120 item with 10% off vs another store same item ₱108 flat. Which is cheaper?",
+          "choices": {
+            "A": "10% off ₱120",
+            "B": "₱108 flat",
+            "C": "Same",
+            "D": "₱120 full price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-001",
+          "title": "[best_buy|discount_vs_bulk|L2] One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "topic": "best_buy",
+          "sub_skill": "discount_vs_bulk",
+          "level": 2,
+          "stem": "One notebook is ₱45. A pack of 5 is ₱200 (no extra discount). Best cost for exactly 5 notebooks?",
+          "choices": {
+            "A": "5 singles (₱225)",
+            "B": "One pack (₱200)",
+            "C": "Two packs (₱400)",
+            "D": "₱40 each in pack"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L2-002",
+          "title": "[best_buy|buy_x_get_y|L2] Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "topic": "best_buy",
+          "sub_skill": "buy_x_get_y",
+          "level": 2,
+          "stem": "Buy 2 shirts get 1 free. Each shirt is ₱350. How much for 3 shirts under the promo?",
+          "choices": {
+            "A": "₱350",
+            "B": "₱700",
+            "C": "₱1,050",
+            "D": "₱233"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L3-001",
+          "title": "[best_buy|unit_price|L3] 3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 3,
+          "stem": "3 kg rice A: ₱159. 2 kg rice B: ₱112. Which is cheaper per kg?",
+          "choices": {
+            "A": "A at ₱53/kg",
+            "B": "B at ₱56/kg",
+            "C": "A at ₱47/kg",
+            "D": "Same price"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-PS-L2-001",
+          "title": "[profit_sales|percent_discount|L2] Tagged ₱500, 10% off during a fair. Sale price?",
+          "topic": "profit_sales",
+          "sub_skill": "percent_discount",
+          "level": 2,
+          "stem": "Tagged ₱500, 10% off during a fair. Sale price?",
+          "choices": {
+            "A": "₱490",
+            "B": "₱450",
+            "C": "₱50",
+            "D": "₱550"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L2-002",
+          "title": "[profit_sales|profit_amount|L2] Buy at ₱240, sell at ₱300. Profit amount?",
+          "topic": "profit_sales",
+          "sub_skill": "profit_amount",
+          "level": 2,
+          "stem": "Buy at ₱240, sell at ₱300. Profit amount?",
+          "choices": {
+            "A": "₱40",
+            "B": "₱60",
+            "C": "₱540",
+            "D": "₱300"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-001",
+          "title": "[installment|down_payment|L1] Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "topic": "installment",
+          "sub_skill": "down_payment",
+          "level": 1,
+          "stem": "Tablet ₱10,000 with 15% down payment. Down payment amount?",
+          "choices": {
+            "A": "₱8,500",
+            "B": "₱1,500",
+            "C": "₱150",
+            "D": "₱10,150"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L1-002",
+          "title": "[installment|monthly_payment|L1] ₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "topic": "installment",
+          "sub_skill": "monthly_payment",
+          "level": 1,
+          "stem": "₱7,200 balance split into 12 equal monthly payments (no interest). Each payment?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱720",
+            "C": "₱12,000",
+            "D": "₱840"
+          },
+          "correct": "A"
+        }
+      ]
+    }
+  ],
+  "class_level_mix_sample": {
+    "commission_wages": 1,
+    "best_buy": 1,
+    "profit_sales": 1,
+    "installment": 1
+  },
+  "bank_count": 32,
+  "bank_items_generated_this_run": 0,
+  "errors": [
+    "Sheets: Google Drive MCP not configured in this environment — using JSON fallback"
+  ]
+}

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "daily:publish": "node automation/scripts/publish-daily.mjs",
+    "daily:build-bank": "node automation/scripts/build-question-bank.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
