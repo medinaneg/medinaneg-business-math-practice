@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-26",
+  "published_at": "2026-11-26T04:00:00+08:00",
+  "students": [
+    {
+      "student_id": "S001",
+      "display_name": "Sofia",
+      "question_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "levels": {
+        "commission": 1,
+        "bestBuy": 1,
+        "profit": 1,
+        "installment": 1
+      }
+    },
+    {
+      "student_id": "S002",
+      "display_name": "Miguel",
+      "question_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "levels": {
+        "commission": 1,
+        "bestBuy": 1,
+        "profit": 1,
+        "installment": 1
+      }
+    },
+    {
+      "student_id": "S003",
+      "display_name": "Ana",
+      "question_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "levels": {
+        "commission": 1,
+        "bestBuy": 1,
+        "profit": 1,
+        "installment": 1
+      }
+    },
+    {
+      "student_id": "S004",
+      "display_name": "Carlo",
+      "question_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "levels": {
+        "commission": 1,
+        "bestBuy": 1,
+        "profit": 1,
+        "installment": 1
+      }
+    },
+    {
+      "student_id": "S005",
+      "display_name": "Bea",
+      "question_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "levels": {
+        "commission": 1,
+        "bestBuy": 1,
+        "profit": 1,
+        "installment": 1
+      }
+    }
+  ]
+}
