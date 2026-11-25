@@ -10,11 +10,18 @@ Students open a personal link from Slack with `student_id` and `date` query para
 
 This pilot class has **exactly 5 students** (`S001`–`S005`). See `automation/data/roster.json`.
 
+## Teacher docs (`docs/`)
+
+- [automation-agent-instructions.md](docs/automation-agent-instructions.md) — Cursor Automations copy-paste prompts
+- [adaptive-practice-setup-plan.md](docs/adaptive-practice-setup-plan.md) — Sheets, Slack, cron
+- [business-math-day1-questions.md](docs/business-math-day1-questions.md) — Day 1 sample bank
+- [platform-recommendation.md](docs/platform-recommendation.md)
+
 ## Automation data
 
 | Path | Purpose |
 |------|---------|
-| `automation/daily/YYYY-MM-DD.json` | Per-day assignments (copy to `public/automation/daily/` for deploy) |
+| `automation/daily/YYYY-MM-DD.json` | Per-day assignments — **after editing, copy to** `public/automation/daily/` and push so GitHub Pages serves the new set |
 | `automation/data/daily-assignments.json` | Rolling assignment index |
 | `public/automation/data/question-bank.json` | Question stems served to the app |
 
