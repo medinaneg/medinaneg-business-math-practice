@@ -1,0 +1,507 @@
+{
+  "date": "2026-11-26",
+  "published_at": "2026-11-25T17:36:18.984Z",
+  "sheets_connected": false,
+  "students": [
+    {
+      "student_id": "S001",
+      "display_name": "Sofia",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S001",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L1-001",
+          "title": "[commission_wages|straight_commission|L1] Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "topic": "commission_wages",
+          "sub_skill": "straight_commission",
+          "level": 1,
+          "stem": "Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱240",
+            "C": "₱12,005",
+            "D": "₱60,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-CW-L1-002",
+          "title": "[commission_wages|hourly_wages|L1] Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "topic": "commission_wages",
+          "sub_skill": "hourly_wages",
+          "level": 1,
+          "stem": "Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "choices": {
+            "A": "₱81",
+            "B": "₱450",
+            "C": "₱375",
+            "D": "₱525"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L2-001",
+          "title": "[commission_wages|salary_plus_commission|L2] Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 2,
+          "stem": "Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱15,000",
+            "C": "₱3,100",
+            "D": "₱17,500"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-CW-L2-002",
+          "title": "[commission_wages|overtime|L2] Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "topic": "commission_wages",
+          "sub_skill": "overtime",
+          "level": 2,
+          "stem": "Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "choices": {
+            "A": "₱800",
+            "B": "₱820",
+            "C": "₱840",
+            "D": "₱900"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L1-001",
+          "title": "[best_buy|unit_price|L1] Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 1,
+          "stem": "Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "choices": {
+            "A": "Store A (₱12 per pen)",
+            "B": "Store B (₱14 per pen)",
+            "C": "Store A (₱20 per pen)",
+            "D": "Store B (₱12 per pen)"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-002",
+          "title": "[best_buy|package_sizes|L1] Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "topic": "best_buy",
+          "sub_skill": "package_sizes",
+          "level": 1,
+          "stem": "Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "choices": {
+            "A": "Buy 500 mL (₱85)",
+            "B": "Buy 250 mL (₱50)",
+            "C": "Buy two 250 mL (₱100)",
+            "D": "500 mL for best unit price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-001",
+          "title": "[profit_sales|markup_amount|L1] Cost ₱80 plus ₱20 markup. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "markup_amount",
+          "level": 1,
+          "stem": "Cost ₱80 plus ₱20 markup. Selling price?",
+          "choices": {
+            "A": "₱60",
+            "B": "₱100",
+            "C": "₱400",
+            "D": "₱25"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-002",
+          "title": "[profit_sales|selling_price_markup_pct|L1] Cost ₱200 with 50% markup on cost. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "selling_price_markup_pct",
+          "level": 1,
+          "stem": "Cost ₱200 with 50% markup on cost. Selling price?",
+          "choices": {
+            "A": "₱100",
+            "B": "₱250",
+            "C": "₱300",
+            "D": "₱400"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-IN-L1-003",
+          "title": "[installment|extra_vs_cash|L1] Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "topic": "installment",
+          "sub_skill": "extra_vs_cash",
+          "level": 1,
+          "stem": "Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "choices": {
+            "A": "₱240",
+            "B": "₱360",
+            "C": "₱2,760",
+            "D": "₱5,160"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L2-001",
+          "title": "[installment|financed_amount|L2] Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "topic": "installment",
+          "sub_skill": "financed_amount",
+          "level": 2,
+          "stem": "Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "choices": {
+            "A": "₱4,800",
+            "B": "₱19,200",
+            "C": "₱28,800",
+            "D": "₱24,000"
+          },
+          "correct": "B"
+        }
+      ]
+    },
+    {
+      "student_id": "S002",
+      "display_name": "Mateo",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S002",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L1-001",
+          "title": "[commission_wages|straight_commission|L1] Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "topic": "commission_wages",
+          "sub_skill": "straight_commission",
+          "level": 1,
+          "stem": "Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱240",
+            "C": "₱12,005",
+            "D": "₱60,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-CW-L1-002",
+          "title": "[commission_wages|hourly_wages|L1] Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "topic": "commission_wages",
+          "sub_skill": "hourly_wages",
+          "level": 1,
+          "stem": "Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "choices": {
+            "A": "₱81",
+            "B": "₱450",
+            "C": "₱375",
+            "D": "₱525"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L2-001",
+          "title": "[commission_wages|salary_plus_commission|L2] Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 2,
+          "stem": "Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱15,000",
+            "C": "₱3,100",
+            "D": "₱17,500"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-CW-L2-002",
+          "title": "[commission_wages|overtime|L2] Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "topic": "commission_wages",
+          "sub_skill": "overtime",
+          "level": 2,
+          "stem": "Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "choices": {
+            "A": "₱800",
+            "B": "₱820",
+            "C": "₱840",
+            "D": "₱900"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L1-001",
+          "title": "[best_buy|unit_price|L1] Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 1,
+          "stem": "Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "choices": {
+            "A": "Store A (₱12 per pen)",
+            "B": "Store B (₱14 per pen)",
+            "C": "Store A (₱20 per pen)",
+            "D": "Store B (₱12 per pen)"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-002",
+          "title": "[best_buy|package_sizes|L1] Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "topic": "best_buy",
+          "sub_skill": "package_sizes",
+          "level": 1,
+          "stem": "Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "choices": {
+            "A": "Buy 500 mL (₱85)",
+            "B": "Buy 250 mL (₱50)",
+            "C": "Buy two 250 mL (₱100)",
+            "D": "500 mL for best unit price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-001",
+          "title": "[profit_sales|markup_amount|L1] Cost ₱80 plus ₱20 markup. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "markup_amount",
+          "level": 1,
+          "stem": "Cost ₱80 plus ₱20 markup. Selling price?",
+          "choices": {
+            "A": "₱60",
+            "B": "₱100",
+            "C": "₱400",
+            "D": "₱25"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-002",
+          "title": "[profit_sales|selling_price_markup_pct|L1] Cost ₱200 with 50% markup on cost. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "selling_price_markup_pct",
+          "level": 1,
+          "stem": "Cost ₱200 with 50% markup on cost. Selling price?",
+          "choices": {
+            "A": "₱100",
+            "B": "₱250",
+            "C": "₱300",
+            "D": "₱400"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-IN-L1-003",
+          "title": "[installment|extra_vs_cash|L1] Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "topic": "installment",
+          "sub_skill": "extra_vs_cash",
+          "level": 1,
+          "stem": "Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "choices": {
+            "A": "₱240",
+            "B": "₱360",
+            "C": "₱2,760",
+            "D": "₱5,160"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L2-001",
+          "title": "[installment|financed_amount|L2] Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "topic": "installment",
+          "sub_skill": "financed_amount",
+          "level": 2,
+          "stem": "Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "choices": {
+            "A": "₱4,800",
+            "B": "₱19,200",
+            "C": "₱28,800",
+            "D": "₱24,000"
+          },
+          "correct": "B"
+        }
+      ]
+    },
+    {
+      "student_id": "S003",
+      "display_name": "Anya",
+      "form_url": "https://medinaneg.github.io/medinaneg-business-math-practice/?student_id=S003",
+      "topic_levels": {
+        "commission_wages": 1,
+        "best_buy": 1,
+        "profit_sales": 1,
+        "installment": 1
+      },
+      "items": [
+        {
+          "q_id": "Q-CW-L1-001",
+          "title": "[commission_wages|straight_commission|L1] Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "topic": "commission_wages",
+          "sub_skill": "straight_commission",
+          "level": 1,
+          "stem": "Miguel earns 5% commission on a ₱12,000 phone sale. How much commission does he earn?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱240",
+            "C": "₱12,005",
+            "D": "₱60,000"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-CW-L1-002",
+          "title": "[commission_wages|hourly_wages|L1] Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "topic": "commission_wages",
+          "sub_skill": "hourly_wages",
+          "level": 1,
+          "stem": "Ana is paid ₱75 per hour and works 6 hours. How much does she earn before deductions?",
+          "choices": {
+            "A": "₱81",
+            "B": "₱450",
+            "C": "₱375",
+            "D": "₱525"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-CW-L2-001",
+          "title": "[commission_wages|salary_plus_commission|L2] Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "topic": "commission_wages",
+          "sub_skill": "salary_plus_commission",
+          "level": 2,
+          "stem": "Jake earns ₱2,500 per week plus 4% commission on ₱15,000 sales. What is his total gross pay?",
+          "choices": {
+            "A": "₱600",
+            "B": "₱15,000",
+            "C": "₱3,100",
+            "D": "₱17,500"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-CW-L2-002",
+          "title": "[commission_wages|overtime|L2] Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "topic": "commission_wages",
+          "sub_skill": "overtime",
+          "level": 2,
+          "stem": "Lea earns ₱80/hour. She works 8 regular hours and 2 overtime hours at 1.25× rate. How much for the day?",
+          "choices": {
+            "A": "₱800",
+            "B": "₱820",
+            "C": "₱840",
+            "D": "₱900"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-BB-L1-001",
+          "title": "[best_buy|unit_price|L1] Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "topic": "best_buy",
+          "sub_skill": "unit_price",
+          "level": 1,
+          "stem": "Store A: 10 pens for ₱120. Store B: 5 pens for ₱70. Which has lower price per pen?",
+          "choices": {
+            "A": "Store A (₱12 per pen)",
+            "B": "Store B (₱14 per pen)",
+            "C": "Store A (₱20 per pen)",
+            "D": "Store B (₱12 per pen)"
+          },
+          "correct": "A"
+        },
+        {
+          "q_id": "Q-BB-L1-002",
+          "title": "[best_buy|package_sizes|L1] Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "topic": "best_buy",
+          "sub_skill": "package_sizes",
+          "level": 1,
+          "stem": "Need 250 mL soap. 500 mL is ₱85; 250 mL is ₱50. Cheapest for 250 mL only?",
+          "choices": {
+            "A": "Buy 500 mL (₱85)",
+            "B": "Buy 250 mL (₱50)",
+            "C": "Buy two 250 mL (₱100)",
+            "D": "500 mL for best unit price"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-001",
+          "title": "[profit_sales|markup_amount|L1] Cost ₱80 plus ₱20 markup. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "markup_amount",
+          "level": 1,
+          "stem": "Cost ₱80 plus ₱20 markup. Selling price?",
+          "choices": {
+            "A": "₱60",
+            "B": "₱100",
+            "C": "₱400",
+            "D": "₱25"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-PS-L1-002",
+          "title": "[profit_sales|selling_price_markup_pct|L1] Cost ₱200 with 50% markup on cost. Selling price?",
+          "topic": "profit_sales",
+          "sub_skill": "selling_price_markup_pct",
+          "level": 1,
+          "stem": "Cost ₱200 with 50% markup on cost. Selling price?",
+          "choices": {
+            "A": "₱100",
+            "B": "₱250",
+            "C": "₱300",
+            "D": "₱400"
+          },
+          "correct": "C"
+        },
+        {
+          "q_id": "Q-IN-L1-003",
+          "title": "[installment|extra_vs_cash|L1] Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "topic": "installment",
+          "sub_skill": "extra_vs_cash",
+          "level": 1,
+          "stem": "Shoes ₱2,400 cash or ₱2,760 installment total. How much more on installment?",
+          "choices": {
+            "A": "₱240",
+            "B": "₱360",
+            "C": "₱2,760",
+            "D": "₱5,160"
+          },
+          "correct": "B"
+        },
+        {
+          "q_id": "Q-IN-L2-001",
+          "title": "[installment|financed_amount|L2] Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "topic": "installment",
+          "sub_skill": "financed_amount",
+          "level": 2,
+          "stem": "Laptop cash ₱24,000. Down payment 20%. Amount to finance?",
+          "choices": {
+            "A": "₱4,800",
+            "B": "₱19,200",
+            "C": "₱28,800",
+            "D": "₱24,000"
+          },
+          "correct": "B"
+        }
+      ]
+    }
+  ],
+  "class_level_mix_sample": {
+    "commission_wages": 1,
+    "best_buy": 1,
+    "profit_sales": 1,
+    "installment": 1
+  },
+  "bank_count": 32,
+  "bank_items_generated_this_run": 0,
+  "errors": [
+    "Sheets: Google Drive MCP not configured in this environment — using JSON fallback"
+  ]
+}

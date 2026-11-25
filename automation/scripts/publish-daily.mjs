@@ -31,17 +31,49 @@ async function tryGoogleSheets() {
   return { ok: false, reason: "Google Drive MCP not configured in this environment" };
 }
 
+function quizDateInTaipei(d = new Date()) {
+  return d.toLocaleDateString("en-CA", { timeZone: "Asia/Taipei" });
+}
+
 function getDateArg() {
   const arg = process.argv.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
   if (arg) return arg;
   const env = process.env.QUIZ_DATE;
   if (env) return env;
-  return new Date().toISOString().slice(0, 10);
+  return quizDateInTaipei();
+}
+
+function dedupeAssignments(records, date) {
+  const kept = records.filter((r) => r.date !== date);
+  const byStudent = new Map();
+  for (const row of records) {
+    if (row.date !== date) continue;
+    byStudent.set(row.student_id, row);
+  }
+  for (const row of byStudent.values()) kept.push(row);
+  return kept;
 }
 
 async function publish() {
   const date = getDateArg();
   const publishedAt = new Date().toISOString();
+  const dailyPath = join(autoRoot, "daily", `${date}.json`);
+  const force = process.env.FORCE_PUBLISH === "1";
+  if (!force && existsSync(dailyPath)) {
+    const existing = JSON.parse(readFileSync(dailyPath, "utf8"));
+    const summary = {
+      date,
+      skipped: true,
+      reason: "Daily artifact already exists (set FORCE_PUBLISH=1 to overwrite)",
+      students_processed: existing.students?.length ?? 0,
+      example_form: existing.students?.[0]?.form_url ?? null,
+      level_mix: existing.class_level_mix_sample,
+      errors: [],
+    };
+    console.log(JSON.stringify(summary, null, 2));
+    return summary;
+  }
+
   const errors = [];
   let sheets = await tryGoogleSheets();
   if (!sheets.ok) {
@@ -60,7 +92,10 @@ async function publish() {
   const roster = loadJson("data/roster.json");
   const topicState = loadJson("data/student-topic-state.json") || { records: [] };
   const attempts = (loadJson("data/attempts.json") || { records: [] }).records;
-  let assignments = (loadJson("data/daily-assignments.json") || { records: [] }).records;
+  let assignments = dedupeAssignments(
+    (loadJson("data/daily-assignments.json") || { records: [] }).records,
+    date
+  );
 
   const active = (roster?.students || []).filter((s) => s.active);
   const dailyArtifact = {
@@ -130,7 +165,6 @@ async function publish() {
 
   const dailyDir = join(autoRoot, "daily");
   mkdirSync(dailyDir, { recursive: true });
-  const dailyPath = join(dailyDir, `${date}.json`);
   writeFileSync(dailyPath, JSON.stringify(dailyArtifact, null, 2) + "\n");
 
   const summary = {
