@@ -10,7 +10,7 @@
 
 ## Tabs (seeded)
 
-- **Roster** — 5 students S001–S005 (Sofia, Miguel, Ana, Carlo, Bea), `active=TRUE`
+- **Roster** — 5 students S001–S005 (Marcus, Zoe, Faye, Jubella, Aizel); `email` and `slack_user_id` may stay blank; `active=TRUE`
 - **QuestionBank** — headers + placeholder row (import full bank from repo `public/automation/data/question-bank.json`)
 - **DailyAssignments** — `quiz_url` = GitHub Pages link per student/day
 - **Attempts** — one row per question per submit

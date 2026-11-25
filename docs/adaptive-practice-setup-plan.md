@@ -27,7 +27,7 @@ Create one spreadsheet **BusinessMathAdaptive** with these tabs.
 |------------|--------------|-------|---------------|--------|
 
 - `student_id`: stable key (e.g. school ID).
-- `slack_user_id`: optional, for @mentions in weekly report.
+- `email` and `slack_user_id`: optional (leave blank for this class). `slack_user_id` only if you later @mention students in Slack.
 
 ### 2.2 `QuestionBank`
 

@@ -6,7 +6,7 @@
 **Slack channel (your class):** `#business-math-practice` — set this channel in the automation’s **Send to Slack** tool settings.
 
 **Google Sheet:** `SPREADSHEET_ID` = `1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo`  
-**Roster:** exactly 5 students — S001 Sofia, S002 Miguel, S003 Ana, S004 Carlo, S005 Bea.
+**Roster:** exactly 5 students — S001 Marcus, S002 Zoe, S003 Faye, S004 Jubella, S005 Aizel (`email` / `slack_user_id` optional, leave blank).
 
 ### Tools to enable on every automation
 
@@ -80,11 +80,11 @@ Then Send to Slack with that text.
 SLACK MESSAGE TEMPLATE (must match this structure)
 📘 Business Math Day {YYYY-MM-DD} is live
 Today's quiz (open your own link):
-• Sofia (S001): {url}
-• Miguel (S002): {url}
-• Ana (S003): {url}
-• Carlo (S004): {url}
-• Bea (S005): {url}
+• Marcus (S001): {url}
+• Zoe (S002): {url}
+• Faye (S003): {url}
+• Jubella (S004): {url}
+• Aizel (S005): {url}
 Level mix (sample): C&W L{n}, Best buy L{n}, Profit L{n}, Installment L{n}
 Bank: {n} items · Sheet: BusinessMathAdaptive connected
 
