@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "format-slack": "node scripts/format-daily-slack.mjs"
+    "format-slack": "node scripts/format-daily-slack.mjs",
+    "parse-submit": "node scripts/parse-submit-from-slack.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -16,7 +16,7 @@
 | Automation | Tools |
 |------------|-------|
 | **A** Daily | **Send to Slack** (required), GitHub, Google Drive, Memory |
-| **B** Submit | **Send to Slack** (required), Google Drive, GitHub, Memory, **Slack** (read channel/thread if using subscription) |
+| **B** Submit | **Send to Slack** (required), **Slack read** (`slack_read_channel`, `slack_read_thread`), Google Drive, GitHub, Memory |
 | **C** Weekly | **Send to Slack** (required), Google Drive, GitHub, Memory |
 
 ---
@@ -28,7 +28,9 @@ GitHub Pages is **static**. When a student taps **Submit quiz**, the app:
 1. Builds a JSON payload: `student_id`, `display_name`, `date`, `submitted_at`, and **10** `answers` (`q_id`, `chosen`, `topic`, `sub_skill`, `level`, `correct`).
 2. Shows **Copy for Slack** with one line: `BUSINESS_MATH_SUBMIT ` + JSON (compact).
 3. Student or teacher **posts that entire line** in `#business-math-practice`.
-4. **Automation B** (event-driven) must run on that message — not on a cron — and append **Attempts** + update mastery in the Sheet.
+4. **Automation B** (event-driven) must run on that message — not on a cron — and **read that message from Slack** (Cursor often does not inject the trigger into run context), then append **Attempts** + update mastery in the Sheet.
+
+Parsing reference: `scripts/parse-submit-from-slack.mjs` (extract JSON after `BUSINESS_MATH_SUBMIT`).
 
 **Optional auto-post (no paste):** Add repo secret `VITE_SUBMIT_WEBHOOK_URL` (GitHub → Settings → Secrets → Actions). Point it at a **CORS-enabled** proxy (e.g. Google Apps Script `doPost`) that forwards `text` to a Slack incoming webhook. Slack webhooks **cannot** be called directly from the browser (CORS). Rebuild happens on push to `main` via `deploy-pages.yml`.
 
@@ -127,9 +129,17 @@ DONE WHEN
 | Name | Business Math — grade & adapt |
 | **Trigger (required)** | **Slack** — new message in `#business-math-practice` whose text **starts with** `BUSINESS_MATH_SUBMIT` (Cursor **Slack channel subscription** or automation Slack event — **not** schedule-only) |
 | **Do not use** | Cron `0 1 * * *` (or any schedule) as the **only** trigger — that produces “Grading skipped — no valid submission” when no message exists |
-| Optional reminder cron | `0 21 * * *` Asia/Taipei — post “Paste any missing BUSINESS_MATH_SUBMIT lines from today’s quiz” only; **do not grade** unless a submit message is present in the same run’s Slack context |
+| Optional reminder cron | `0 21 * * *` Asia/Taipei — post “Paste any missing BUSINESS_MATH_SUBMIT lines from today’s quiz” only; if grading in that run, still execute **step 0** Slack read |
 | Repository | Same |
-| Slack tool | `#business-math-practice` |
+| Slack tool (send) | `#business-math-practice` |
+| Slack tool (read) | **Required** — enable channel/thread read on the automation |
+
+### Cursor automation setup (B)
+
+1. **Tools** on [cursor.com/automations](https://cursor.com/automations): enable **Send to Slack** *and* **Slack** read tools — at minimum `slack_read_channel` and `slack_read_thread` (not send-only).
+2. **Trigger:** Slack — new message in `#business-math-practice` (optional keyword filter `BUSINESS_MATH_SUBMIT`). Event/webhook triggers **do not** guarantee the message body is in the agent prompt; the prompt **always** fetches from Slack (step 0).
+3. After editing this repo file, **re-paste the full Automation B prompt** below into the automation and save.
+4. **Manual test run:** post a fresh `BUSINESS_MATH_SUBMIT {…}` line, wait for the automation, confirm the agent called `slack_read_channel` before grading.
 
 ### Prompt
 
@@ -140,14 +150,23 @@ CONSTANTS
 - SPREADSHEET_ID: 1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo
 - SLACK_CHANNEL: #business-math-practice
 - Roster: S001–S005 only
+- KEYWORD: BUSINESS_MATH_SUBMIT
 
-TRIGGER RULE
-- Only grade when this run was started by a Slack message (or thread) in #business-math-practice starting with BUSINESS_MATH_SUBMIT.
-- If no such message exists in the run context, reply once: "Grading skipped — no BUSINESS_MATH_SUBMIT message in this run." Do not invent submissions.
+STEP 0 — FETCH SUBMIT FROM SLACK (mandatory first step; never skip)
+Cursor often does NOT put the triggering Slack message in your run context. You MUST load it yourself before grading or skipping.
 
-INPUT: JSON immediately after keyword BUSINESS_MATH_SUBMIT with student_id, display_name, date, submitted_at (optional), and answers[] length 10. Each answer: q_id, chosen, topic, sub_skill, level, correct (boolean).
+0a. If the run metadata includes a Slack channel thread (thread_ts / thread timestamp), call Slack MCP slack_read_thread on #business-math-practice for that thread.
+0b. Otherwise call Slack MCP slack_read_channel on #business-math-practice with limit ~20 recent messages (increase to ~50 only if needed).
+0c. Prefer the triggering message if automation metadata gives a message timestamp (ts) — match that message first.
+0d. Otherwise choose the newest message whose text, after trimming leading whitespace, starts with BUSINESS_MATH_SUBMIT (case-sensitive keyword).
+0e. Parse JSON: strip the keyword and whitespace; from the first "{" take balanced braces through the closing "}" for that object (entire quiz JSON is often one Slack message / one line). If parsing fails, reply with the parse error and stop.
+0f. Only if steps 0a–0e find zero matching messages after an active Slack read, post exactly once: "Grading skipped — no BUSINESS_MATH_SUBMIT message found in #business-math-practice (searched recent channel messages)." Never skip without calling slack_read_channel or slack_read_thread.
 
-WORKFLOW
+Do not rely on "run context", user paste in the automation chat, or memory for the payload — the Slack read is the source of truth.
+
+INPUT (from parsed JSON): student_id, display_name, date, submitted_at (optional), answers[] length 10. Each answer: q_id, chosen, topic, sub_skill, level, correct (boolean).
+
+WORKFLOW (after step 0 succeeds)
 1. Validate 10 answers; compute score and per-topic breakdown.
 2. Append rows to Sheet tab Attempts (one row per question).
 3. Update StudentTopicState and StudentSubSkillState per adaptive rules (100% → level up; 70–99% hold; <70% hold + remedial).
