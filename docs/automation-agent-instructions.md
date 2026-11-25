@@ -6,7 +6,12 @@
 **Slack channel:** `#business-math-practice`  
 **Currency / context:** Philippine peso (₱); Grade 8; Philippine school/part-time job contexts.
 
-**Tools to enable:** Send to Slack, GitHub (push to repo), Memory. Optional: Google Sheets MCP when the Sheet is connected.
+**Tools to enable:** Send to Slack, GitHub (push to repo), **Google Drive** (Sheets), Memory.
+
+**Google Sheet (connected):** `BusinessMathAdaptive`  
+**SPREADSHEET_ID:** `1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo`  
+**URL:** https://docs.google.com/spreadsheets/d/1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo/edit  
+Setup: `google-sheet-connection.md`
 
 **Pilot roster (fixed):** exactly **5 students** — see `automation/data/roster.json` (`S001` Sofia, `S002` Miguel, `S003` Ana, `S004` Carlo, `S005` Bea). Never generate links for anyone else.
 

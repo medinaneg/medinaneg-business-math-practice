@@ -1,0 +1,14 @@
+{
+  "title": "BusinessMathAdaptive",
+  "spreadsheetId": "1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1rT8vo5usB8hTvU9pahRdVbq8ql0TRM6YxLLSogvfcqo/edit",
+  "tabs": [
+    "Roster",
+    "QuestionBank",
+    "DailyAssignments",
+    "Attempts",
+    "StudentTopicState",
+    "StudentSubSkillState",
+    "WeeklyReports"
+  ]
+}
