@@ -1,9 +1,8 @@
 /** Sample Day 1 — Level 1 · Grade 8 business math (Philippine peso contexts) */
+/** Static Day 1 fallback when daily assignment JSON is unavailable */
 export const quizMeta = {
   title: "Sample Day 1 — Level 1",
   subtitle: "Grade 8 · Business Math · Basic · One-step · Whole numbers",
-  plannedNote:
-    "Adaptive difficulty and Slack delivery are planned for a future version. This published build is a static sample quiz for practice.",
 };
 
 export const questions = [

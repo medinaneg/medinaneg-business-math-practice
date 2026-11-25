@@ -1,0 +1,10 @@
+{
+  "class_size": 5,
+  "active_students": [
+    { "student_id": "S001", "display_name": "Sofia" },
+    { "student_id": "S002", "display_name": "Miguel" },
+    { "student_id": "S003", "display_name": "Ana" },
+    { "student_id": "S004", "display_name": "Carlo" },
+    { "student_id": "S005", "display_name": "Bea" }
+  ]
+}

@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
-import { quizMeta, questions } from "./data/questions.js";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { loadDailyQuiz, readQuizParams } from "./lib/dailyQuiz.js";
 import "./App.css";
 
 const STORAGE_KEY = "business-math-student-name";
@@ -21,26 +21,75 @@ function saveName(name) {
   }
 }
 
+function emptyAnswers(questionList) {
+  return Object.fromEntries(questionList.map((q) => [q.id, ""]));
+}
+
 export default function App() {
+  const [boot, setBoot] = useState({ status: "loading" });
+  const [questions, setQuestions] = useState([]);
+  const [quizMeta, setQuizMeta] = useState({
+    title: "Business Math Daily Practice",
+    subtitle: "",
+    dayDate: "",
+    levelsLine: "",
+    usedFallback: false,
+  });
+
   const [phase, setPhase] = useState("welcome");
   const [studentName, setStudentName] = useState(loadName);
-  const [answers, setAnswers] = useState(() =>
-    Object.fromEntries(questions.map((q) => [q.id, ""]))
-  );
+  const [answers, setAnswers] = useState({});
   const [expandedSolutions, setExpandedSolutions] = useState({});
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { studentId, date } = readQuizParams();
+      if (!studentId || !date) {
+        if (!cancelled) {
+          setBoot({ status: "missing_link" });
+        }
+        return;
+      }
+      const result = await loadDailyQuiz(studentId, date);
+      if (cancelled) return;
+      if (!result.ok) {
+        setBoot({ status: "error", message: result.message });
+        return;
+      }
+      setQuestions(result.quizQuestions);
+      setAnswers(emptyAnswers(result.quizQuestions));
+      if (result.displayName) {
+        setStudentName(result.displayName);
+        saveName(result.displayName);
+      }
+      setQuizMeta({
+        title: `Day ${result.date}`,
+        subtitle: result.subtitle,
+        dayDate: result.date,
+        levelsLine: result.levels ? formatLevels(result.levels) : "",
+        usedFallback: result.usedFallback,
+        studentId: result.studentId,
+      });
+      setBoot({ status: "ready" });
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const answeredCount = useMemo(
     () => questions.filter((q) => answers[q.id]).length,
-    [answers]
+    [answers, questions]
   );
 
   const score = useMemo(
-    () =>
-      questions.filter((q) => answers[q.id] === q.correct).length,
-    [answers]
+    () => questions.filter((q) => answers[q.id] === q.correct).length,
+    [answers, questions]
   );
 
-  const allAnswered = answeredCount === questions.length;
+  const allAnswered =
+    questions.length > 0 && answeredCount === questions.length;
 
   const startQuiz = useCallback(() => {
     saveName(studentName);
@@ -54,15 +103,54 @@ export default function App() {
   }, [allAnswered]);
 
   const retake = useCallback(() => {
-    setAnswers(Object.fromEntries(questions.map((q) => [q.id, ""])));
+    setAnswers(emptyAnswers(questions));
     setExpandedSolutions({});
     setPhase("quiz");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [questions]);
 
   const toggleSolution = (id) => {
     setExpandedSolutions((prev) => ({ ...prev, [id]: !prev[id] }));
   };
+
+  if (boot.status === "loading") {
+    return (
+      <div className="app">
+        <main className="main">
+          <section className="card welcome-card">
+            <p>Loading your quiz…</p>
+          </section>
+        </main>
+      </div>
+    );
+  }
+
+  if (boot.status === "missing_link") {
+    return (
+      <div className="app">
+        <header className="site-header">
+          <p className="eyebrow">Business Math · Daily Practice</p>
+          <h1>Open your link from Slack</h1>
+          <p className="subtitle">
+            Each student gets a personal quiz link with <code>student_id</code> and{" "}
+            <code>date</code> in the URL. Ask your teacher or check{" "}
+            <strong>#business-math-practice</strong> for today&apos;s message.
+          </p>
+        </header>
+      </div>
+    );
+  }
+
+  if (boot.status === "error") {
+    return (
+      <div className="app">
+        <header className="site-header">
+          <h1>We couldn&apos;t load your quiz</h1>
+          <p className="subtitle">{boot.message}</p>
+        </header>
+      </div>
+    );
+  }
 
   return (
     <div className="app">
@@ -70,9 +158,16 @@ export default function App() {
         <p className="eyebrow">Business Math · Daily Practice</p>
         <h1>{quizMeta.title}</h1>
         <p className="subtitle">{quizMeta.subtitle}</p>
-        <p className="planned-note" role="note">
-          {quizMeta.plannedNote}
-        </p>
+        {quizMeta.levelsLine && (
+          <p className="level-mix" role="note">
+            {quizMeta.levelsLine}
+          </p>
+        )}
+        {quizMeta.usedFallback && (
+          <p className="planned-note" role="note">
+            Daily assignment file was not found — showing the static Day 1 sample.
+          </p>
+        )}
       </header>
 
       <main className="main">
@@ -80,12 +175,12 @@ export default function App() {
           <section className="card welcome-card" aria-labelledby="welcome-heading">
             <h2 id="welcome-heading">Ready for today&apos;s set?</h2>
             <p>
-              Answer all <strong>10 multiple-choice questions</strong> about
-              commissions, best buy, profit, and installment buying — all in
+              Answer all <strong>{questions.length} multiple-choice questions</strong>{" "}
+              about commissions, best buy, profit, and installment buying — all in
               Philippine peso (₱) contexts.
             </p>
             <label className="name-field" htmlFor="student-name">
-              Your first name (stays on this device only)
+              Your name
             </label>
             <input
               id="student-name"
@@ -224,10 +319,11 @@ export default function App() {
                         {open ? "▾" : "▸"}
                       </span>
                     </button>
-                    {open && (
+                    {open && q.solution && (
                       <div className="solution-body">
                         <p className="correct-ans">
-                          Correct answer: <strong>{q.solution.answerLabel}</strong>
+                          Correct answer:{" "}
+                          <strong>{q.solution.answerLabel}</strong>
                         </p>
                         <p>{q.solution.summary}</p>
                         <ul className="steps">
@@ -235,7 +331,7 @@ export default function App() {
                             <li key={i}>{step}</li>
                           ))}
                         </ul>
-                        {q.solution.wrongAnswers.length > 0 && (
+                        {q.solution.wrongAnswers?.length > 0 && (
                           <>
                             <p className="why-wrong">Why wrong answers are tempting</p>
                             <ul className="wrong-hints">
@@ -256,10 +352,17 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <p>Sample content only · Currency: Philippine peso (₱)</p>
+        <p>
+          {quizMeta.dayDate ? `Set for ${quizMeta.dayDate}` : "Daily practice"} ·
+          Currency: Philippine peso (₱)
+        </p>
       </footer>
     </div>
   );
+}
+
+function formatLevels(levels) {
+  return `C&W L${levels.commission} · Best buy L${levels.bestBuy} · Profit L${levels.profit} · Installment L${levels.installment}`;
 }
 
 function ProgressBar({
@@ -271,7 +374,7 @@ function ProgressBar({
   allAnswered,
   onSubmit,
 }) {
-  const pct = (answeredCount / total) * 100;
+  const pct = total ? (answeredCount / total) * 100 : 0;
   return (
     <div className={sticky ? "progress-bar sticky" : "progress-bar"}>
       <div className="progress-text">
