@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadDailyQuiz, readQuizParams } from "./lib/dailyQuiz.js";
+import {
+  buildSubmissionPayload,
+  formatSlackSubmitMessage,
+  loadStoredSubmission,
+  postSubmitWebhook,
+  storeSubmission,
+} from "./lib/submitPayload.js";
 import "./App.css";
 
 const STORAGE_KEY = "business-math-student-name";
@@ -40,6 +47,9 @@ export default function App() {
   const [studentName, setStudentName] = useState(loadName);
   const [answers, setAnswers] = useState({});
   const [expandedSolutions, setExpandedSolutions] = useState({});
+  const [submission, setSubmission] = useState(null);
+  const [copyStatus, setCopyStatus] = useState("idle");
+  const [webhookStatus, setWebhookStatus] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,7 +80,13 @@ export default function App() {
         levelsLine: result.levels ? formatLevels(result.levels) : "",
         usedFallback: result.usedFallback,
         studentId: result.studentId,
+        displayName: result.displayName || "",
+        studentLevels: result.levels || null,
       });
+      const prior = loadStoredSubmission(result.studentId, result.date);
+      if (prior?.slackLine) {
+        setSubmission(prior);
+      }
       setBoot({ status: "ready" });
     })();
     return () => {
@@ -96,18 +112,63 @@ export default function App() {
     setPhase("quiz");
   }, [studentName]);
 
+  const recordSubmission = useCallback(async () => {
+    const studentId = quizMeta.studentId;
+    const date = quizMeta.dayDate;
+    if (!studentId || !date || !questions.length) return;
+
+    const displayName =
+      studentName.trim() || quizMeta.displayName?.trim() || studentId;
+    const payload = buildSubmissionPayload({
+      studentId,
+      displayName,
+      date,
+      questions,
+      answers,
+      levels: quizMeta.studentLevels,
+    });
+    const slackLine = formatSlackSubmitMessage(payload);
+    const bundle = { payload, slackLine };
+    storeSubmission(studentId, date, payload, slackLine);
+    setSubmission(bundle);
+
+    const hook = await postSubmitWebhook(slackLine, payload);
+    setWebhookStatus(hook);
+  }, [
+    answers,
+    questions,
+    quizMeta.dayDate,
+    quizMeta.studentId,
+    quizMeta.studentLevels,
+    studentName,
+  ]);
+
   const submitQuiz = useCallback(() => {
     if (!allAnswered) return;
+    void recordSubmission();
     setPhase("results");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [allAnswered]);
+  }, [allAnswered, recordSubmission]);
 
   const retake = useCallback(() => {
     setAnswers(emptyAnswers(questions));
     setExpandedSolutions({});
+    setSubmission(null);
+    setWebhookStatus(null);
+    setCopyStatus("idle");
     setPhase("quiz");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [questions]);
+
+  const copySubmission = useCallback(async () => {
+    if (!submission?.slackLine) return;
+    try {
+      await navigator.clipboard.writeText(submission.slackLine);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
+    }
+  }, [submission?.slackLine]);
 
   const toggleSolution = (id) => {
     setExpandedSolutions((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -288,6 +349,68 @@ export default function App() {
                   Change name
                 </button>
               </div>
+            </div>
+
+            <div className="card submission-card" aria-labelledby="submit-record-heading">
+              <h3 id="submit-record-heading">Record your score in class</h3>
+              <p>
+                Your score is saved on this device only until it reaches the class
+                Google Sheet. Post the line below to{" "}
+                <strong>#business-math-practice</strong> (paste as yourself or ask a
+                teacher). Automation <strong>B</strong> grades it and updates the
+                Sheet.
+              </p>
+              {submission?.slackLine ? (
+                <>
+                  <label className="visually-hidden" htmlFor="slack-submit-line">
+                    Submission text for Slack
+                  </label>
+                  <textarea
+                    id="slack-submit-line"
+                    className="submission-text"
+                    readOnly
+                    rows={4}
+                    value={submission.slackLine}
+                  />
+                  <div className="submission-actions">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => void copySubmission()}
+                    >
+                      {copyStatus === "copied" ? "Copied!" : "Copy for Slack"}
+                    </button>
+                  </div>
+                  {copyStatus === "failed" && (
+                    <p className="submission-hint" role="status">
+                      Could not copy automatically — select the text above and copy
+                      manually.
+                    </p>
+                  )}
+                  {webhookStatus?.attempted && (
+                    <p className="submission-hint" role="status">
+                      {webhookStatus.ok
+                        ? "Also sent to your teacher webhook."
+                        : "Webhook not configured or blocked — use Copy for Slack."}
+                    </p>
+                  )}
+                  <p className="submission-hint">
+                    Starts with <code>BUSINESS_MATH_SUBMIT</code> ·{" "}
+                    {submission.payload.answers.length} answers ·{" "}
+                    {submission.payload.display_name} ({submission.payload.student_id})
+                  </p>
+                </>
+              ) : (
+                <p>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => void recordSubmission()}
+                  >
+                    Generate submission
+                  </button>
+                </p>
+              )}
             </div>
 
             <h3 className="solutions-heading">Step-by-step solutions</h3>

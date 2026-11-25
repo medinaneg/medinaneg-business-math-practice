@@ -16,8 +16,23 @@
 | Automation | Tools |
 |------------|-------|
 | **A** Daily | **Send to Slack** (required), GitHub, Google Drive, Memory |
-| **B** Submit | **Send to Slack** (required), Google Drive, GitHub, Memory |
+| **B** Submit | **Send to Slack** (required), Google Drive, GitHub, Memory, **Slack** (read channel/thread if using subscription) |
 | **C** Weekly | **Send to Slack** (required), Google Drive, GitHub, Memory |
+
+---
+
+## Quiz submit → Slack → Sheet (after quiz UI deploy)
+
+GitHub Pages is **static**. When a student taps **Submit quiz**, the app:
+
+1. Builds a JSON payload: `student_id`, `display_name`, `date`, `submitted_at`, and **10** `answers` (`q_id`, `chosen`, `topic`, `sub_skill`, `level`, `correct`).
+2. Shows **Copy for Slack** with one line: `BUSINESS_MATH_SUBMIT ` + JSON (compact).
+3. Student or teacher **posts that entire line** in `#business-math-practice`.
+4. **Automation B** (event-driven) must run on that message — not on a cron — and append **Attempts** + update mastery in the Sheet.
+
+**Optional auto-post (no paste):** Add repo secret `VITE_SUBMIT_WEBHOOK_URL` (GitHub → Settings → Secrets → Actions). Point it at a **CORS-enabled** proxy (e.g. Google Apps Script `doPost`) that forwards `text` to a Slack incoming webhook. Slack webhooks **cannot** be called directly from the browser (CORS). Rebuild happens on push to `main` via `deploy-pages.yml`.
+
+**Recovering a score after submit (e.g. Marcus 8/10 before the fix):** Re-open the personal quiz link, answer all 10 again, submit, copy the new line to Slack, or teacher pastes on the student’s behalf.
 
 ---
 
@@ -110,7 +125,9 @@ DONE WHEN
 | Setting | Value |
 |---------|--------|
 | Name | Business Math — grade & adapt |
-| Trigger | Slack in `#business-math-practice` with text starting `BUSINESS_MATH_SUBMIT` |
+| **Trigger (required)** | **Slack** — new message in `#business-math-practice` whose text **starts with** `BUSINESS_MATH_SUBMIT` (Cursor **Slack channel subscription** or automation Slack event — **not** schedule-only) |
+| **Do not use** | Cron `0 1 * * *` (or any schedule) as the **only** trigger — that produces “Grading skipped — no valid submission” when no message exists |
+| Optional reminder cron | `0 21 * * *` Asia/Taipei — post “Paste any missing BUSINESS_MATH_SUBMIT lines from today’s quiz” only; **do not grade** unless a submit message is present in the same run’s Slack context |
 | Repository | Same |
 | Slack tool | `#business-math-practice` |
 
@@ -124,7 +141,11 @@ CONSTANTS
 - SLACK_CHANNEL: #business-math-practice
 - Roster: S001–S005 only
 
-INPUT: JSON after keyword BUSINESS_MATH_SUBMIT with student_id, display_name, date, and 10 answers (q_id, chosen, topic, sub_skill, level, correct).
+TRIGGER RULE
+- Only grade when this run was started by a Slack message (or thread) in #business-math-practice starting with BUSINESS_MATH_SUBMIT.
+- If no such message exists in the run context, reply once: "Grading skipped — no BUSINESS_MATH_SUBMIT message in this run." Do not invent submissions.
+
+INPUT: JSON immediately after keyword BUSINESS_MATH_SUBMIT with student_id, display_name, date, submitted_at (optional), and answers[] length 10. Each answer: q_id, chosen, topic, sub_skill, level, correct (boolean).
 
 WORKFLOW
 1. Validate 10 answers; compute score and per-topic breakdown.
@@ -187,10 +208,12 @@ Optional: append detail to Sheet tab WeeklyReports or a Google Doc; link in Slac
 
 ## Cron
 
-| Job | Cron |
-|-----|------|
-| Daily (A) | `0 4 * * *` |
-| Weekly (C) | `0 17 * * 5` |
+| Job | Cron | Notes |
+|-----|------|--------|
+| Daily (A) | `0 4 * * *` | Publish quiz links |
+| Weekly (C) | `0 17 * * 5` | Teacher report |
+| Submit (B) | **None** | Event: Slack `BUSINESS_MATH_SUBMIT` only |
+| Optional B reminder | `0 21 * * *` | Nudge only — not grading |
 
 ## If your Slack channel has a different name
 

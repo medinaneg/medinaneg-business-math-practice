@@ -265,6 +265,42 @@
   text-align: center;
 }
 
+.submission-card {
+  margin-top: 1.25rem;
+}
+
+.submission-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.submission-text {
+  width: 100%;
+  margin-top: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  resize: vertical;
+  word-break: break-all;
+}
+
+.submission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.submission-hint {
+  margin: 0.65rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
 .score-card h2 {
   margin: 0 0 1rem;
   font-size: 1.35rem;

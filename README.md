@@ -13,6 +13,8 @@ Vite + React quiz app for adaptive daily business math (Philippine peso contexts
 
 Students open a personal link from Slack with `student_id` and `date` query parameters.
 
+After **Submit quiz**, copy the `BUSINESS_MATH_SUBMIT …` line into `#business-math-practice` so Automation B can grade and write the Google Sheet. Optional: set Actions secret `VITE_SUBMIT_WEBHOOK_URL` to a CORS proxy that posts to Slack (see `docs/automation-agent-instructions.md`).
+
 ## Class roster
 
 This pilot class has **exactly 5 students** (`S001`–`S005`). See `automation/data/roster.json`.
